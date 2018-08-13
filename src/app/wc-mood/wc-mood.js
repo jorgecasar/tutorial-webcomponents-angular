@@ -20,6 +20,20 @@ class WebComponentsMood extends LitElement {
     `;
   }
 
+  _didRender(_props, _changedProps, _prevProps) {
+    this._notifyPropsChanges(_props, _changedProps);
+  }
+
+  _notifyPropsChanges(_props, _changedProps) {
+    for(let prop in _props) {
+      this.dispatchEvent(new CustomEvent(prop + '-changed', {
+        detail: {
+          value: _changedProps[prop]
+        }
+      }));
+    }
+  }
+
 }
 
 customElements.define('wc-mood', WebComponentsMood);
