@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import './wc-mood/wc-mood';
 
@@ -9,7 +9,7 @@ import './wc-mood/wc-mood';
 })
 export class AppComponent {
   private moods: Array<string> = ['awesome', 'formidable', 'great', 'terrifying', 'wonderful', 'astonishing', 'breathtaking'];
-  mood: string;
+  private _mood: string;
   isChanged: boolean = false;
 
   constructor() {
@@ -26,6 +26,19 @@ export class AppComponent {
 
   moodChanged() {
     this.isChanged = true;
-    setTimeout(() => this.isChanged = false, 1000);
+    setTimeout(() => {
+      this.isChanged = false;
+    }, 1000);
+  }
+
+  public get mood():string {
+    return this._mood;
+  }
+
+  public set mood(value:string) {
+    if(this._mood !== value) {
+      this._mood = value;
+      this.moodChanged();
+    }
   }
 }
