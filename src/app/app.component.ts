@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import './wc-mood/wc-mood';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
